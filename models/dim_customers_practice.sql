@@ -2,27 +2,13 @@
 
 with customers as (
 
-    select
-        id as customer_id,
-        first_name,
-        last_name,
-  left(last_name,'1') as updated_last_name,
-  concat(first_name,' ', updated_last_name) as full_name
- 
-
-    from raw.jaffle_shop.customers
+select * from {{ ref('stg_customers')}}
 
 ),
 
 orders as (
 
-    select
-        id as order_id,
-        user_id as customer_id,
-        order_date,
-        status
-
-    from raw.jaffle_shop.orders
+select * from {{ ref('stg_orders') }}
 
 ),
 
