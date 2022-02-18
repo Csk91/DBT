@@ -31,6 +31,7 @@ final as (
     select
         customers.customer_id,
         customers.full_name,
+        coalesce(MONTHNAME(customer_orders.first_order_date),'No Month Name') as Month_Name,
         (case when customer_orders.first_order_date is null then '2050-12-31' else first_order_date end) as first_order_date,
         (case when customer_orders.most_recent_order_date is null then '2050-12-31' else most_recent_order_date end) as most_recent_order_date,
         coalesce(customer_orders.number_of_orders, 0) as number_of_orders,
